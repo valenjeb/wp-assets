@@ -1,0 +1,5 @@
+{
+  "/js/scripts.js": "/js/scripts.js?id=12345",
+  "/css/style.css": "/css/style.12345.css",
+  "/css/reset.css": "/css/reset.css"
+}

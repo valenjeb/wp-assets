@@ -1,0 +1,46 @@
+{
+  "name": "devlt/wp-assets",
+  "description": "A WordPress library helper to deal with assets URLs, and style / scripts enqueueing.",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Valentin Jebelev",
+      "homepage": "https://github.com/valenjeb"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Devly\\WP\\Assets\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Devly\\Tests\\WP\\Assets\\": "tests/src"
+    }
+  },
+  "require": {
+    "php": "^7.4",
+    "ext-json": "*",
+    "wptt/webfont-loader": "^1.1"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+    "devly/coding-standard": "^1.0",
+    "php-parallel-lint/php-parallel-lint": "^1.2.0",
+    "php-stubs/wordpress-stubs": "^6.1",
+    "phpstan/phpstan": "^1.9",
+    "phpunit/phpunit": "^9.5",
+    "ralouphie/mimey": "^2.1",
+    "szepeviktor/phpstan-wordpress": "^1.1",
+    "wp-cli/i18n-command": "^2.2.5",
+    "wptrt/wpthemereview": "^0.2.1",
+    "yoast/phpunit-polyfills": "^1.0"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
