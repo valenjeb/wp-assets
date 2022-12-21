@@ -1,5 +1,5 @@
 {
-  "name": "devlt/wp-assets",
+  "name": "devly/wp-assets",
   "description": "A WordPress library helper to deal with assets URLs, and style / scripts enqueueing.",
   "minimum-stability": "dev",
   "prefer-stable": true,
