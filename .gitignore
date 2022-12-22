@@ -5,3 +5,5 @@ node_modules/
 vendor/
 .idea/
 *.cache
+/src/WebFont/webfont-loader/*
+!/src/WebFont/webfont-loader/wptt-webfont-loader.php

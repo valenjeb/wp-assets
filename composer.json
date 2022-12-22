@@ -12,7 +12,8 @@
   "autoload": {
     "psr-4": {
       "Devly\\WP\\Assets\\": "src"
-    }
+    },
+    "files": ["src/lib/webfont-loader/wptt-webfont-loader.php"]
   },
   "autoload-dev": {
     "psr-4": {
@@ -42,5 +43,10 @@
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "php -r \"system('mv '.getcwd().'/vendor/wptt/webfont-loader '.getcwd().'/src/lib');\""
+    ]
   }
 }
