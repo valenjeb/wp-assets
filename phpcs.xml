@@ -23,6 +23,7 @@
     <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
         <exclude-pattern>/tests/bootstrap.php</exclude-pattern>
     </rule>
+
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<!-- Value: replace the text domain used. -->
