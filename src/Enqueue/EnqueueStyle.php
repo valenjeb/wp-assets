@@ -9,18 +9,40 @@ use function str_replace;
 use function strpos;
 use function wp_add_inline_style;
 use function wp_enqueue_style;
+use function wp_register_style;
 use function wp_style_add_data;
 
 class EnqueueStyle
 {
     protected string $handle;
 
-    /** @param string[] $dependencies */
-    public function __construct(string $handle, string $src, array $dependencies = [], string $media = 'all')
+    private function __construct(string $handle)
     {
         $this->handle = $handle;
+    }
 
+    /**
+     * Registers and enqueues a CSS stylesheet.
+     *
+     * @param string[] $dependencies
+     */
+    public static function enqueue(string $handle, string $src, array $dependencies = [], string $media = 'all'): self
+    {
         wp_enqueue_style($handle, $src, $dependencies, null, $media);
+
+        return new self($handle);
+    }
+
+    /**
+     * Registers a CSS stylesheet to be enqueued later.
+     *
+     * @param string[] $dependencies
+     */
+    public static function register(string $handle, string $src, array $dependencies = [], string $media = 'all'): self
+    {
+        wp_register_style($handle, $src, $dependencies, null, $media);
+
+        return new self($handle);
     }
 
     public function withCondition(string $condition): EnqueueStyle

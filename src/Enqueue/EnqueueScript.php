@@ -9,6 +9,7 @@ use function sprintf;
 use function str_replace;
 use function wp_add_inline_script;
 use function wp_enqueue_script;
+use function wp_register_script;
 use function wp_localize_script;
 use function wp_scripts;
 
@@ -16,11 +17,33 @@ class EnqueueScript
 {
     protected string $handle;
 
-    /** @param string[] $dependencies */
-    public function __construct(string $handle, string $src, array $dependencies = [], bool $inFooter = true)
+    private function __construct(string $handle)
     {
         $this->handle = $handle;
+    }
+
+    /**
+     * Registers and enqueues a script.
+     *
+     * @param string[] $dependencies
+     */
+    public static function enqueue(string $handle, string $src, array $dependencies = [], bool $inFooter = true): self
+    {
         wp_enqueue_script($handle, $src, $dependencies, null, $inFooter);
+
+        return new self($handle);
+    }
+
+    /**
+     * Registers a new script to be enqueued later.
+     *
+     * @param string[] $dependencies
+     */
+    public static function register(string $handle, string $src, array $dependencies = [], bool $inFooter = true): self
+    {
+        wp_register_script($handle, $src, $dependencies, null, $inFooter);
+
+        return new self($handle);
     }
 
     /**

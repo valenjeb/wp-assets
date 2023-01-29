@@ -17,6 +17,8 @@ trait Enqueuable
     abstract public function extension(): string;
 
     /**
+     * Registers and enqueues a script or a CSS stylesheet.
+     *
      * @param string[]    $dependencies
      * @param bool|string $mediaOrBool
      *
@@ -26,25 +28,34 @@ trait Enqueuable
     {
         switch ($this->extension()) {
             case 'css':
-                return $this->enqueueStyle($dependencies, $mediaOrBool);
+                return EnqueueStyle::enqueue($this->handle(), $this->uri(), $dependencies, $mediaOrBool ?? 'all');
 
             case 'js':
-                return $this->enqueueScript($dependencies, $mediaOrBool);
-
+                return EnqueueScript::enqueue($this->handle(), $this->uri(), $dependencies, $mediaOrBool ?? true);
             default:
                 throw new RuntimeException(sprintf('"%s" file type is not enqueuable.', $this->extension()));
         }
     }
 
-    /** @param string[] $dependencies */
-    protected function enqueueStyle(array $dependencies = [], ?string $media = 'all'): EnqueueStyle
+    /**
+     * Registers a script or a CSS stylesheet to be enqueued later.
+     *
+     * @param string[]    $dependencies
+     * @param bool|string $mediaOrBool
+     *
+     * @return EnqueueScript|EnqueueStyle
+     */
+    public function register(array $dependencies = [], $mediaOrBool = null)
     {
-        return new EnqueueStyle($this->handle(), $this->uri(), $dependencies, $media ?? 'all');
-    }
+        switch ($this->extension()) {
+            case 'css':
+                return EnqueueStyle::register($this->handle(), $this->uri(), $dependencies, $mediaOrBool ?? 'all');
 
-    /** @param string[] $dependencies */
-    protected function enqueueScript(array $dependencies, ?bool $inFooter = true): EnqueueScript
-    {
-        return new EnqueueScript($this->handle(), $this->uri(), $dependencies, $inFooter ?? true);
+            case 'js':
+                return EnqueueScript::register($this->handle(), $this->uri(), $dependencies, $mediaOrBool ?? true);
+
+            default:
+                throw new RuntimeException(sprintf('"%s" file type is not enqueuable.', $this->extension()));
+        }
     }
 }
