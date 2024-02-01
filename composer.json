@@ -21,7 +21,7 @@
     }
   },
   "require": {
-    "php": "^7.4",
+    "php": ">=7.4",
     "ext-json": "*",
     "wptt/webfont-loader": "^1.1"
   },
@@ -32,7 +32,6 @@
     "php-stubs/wordpress-stubs": "^6.1",
     "phpstan/phpstan": "^1.9",
     "phpunit/phpunit": "^9.5",
-    "ralouphie/mimey": "^2.1",
     "szepeviktor/phpstan-wordpress": "^1.1",
     "wptrt/wpthemereview": "^0.2.1",
     "yoast/phpunit-polyfills": "^1.0"
